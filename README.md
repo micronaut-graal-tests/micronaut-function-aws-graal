@@ -1,10 +1,38 @@
-## Feature aws-lambda-custom-runtime documentation
+# Micronaut AWS Function GraalVM
 
-- [Micronaut Custom AWS Lambda runtime documentation](https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#lambdaCustomRuntimes)
+Test application for Micronaut Function deployed to AWS as a GraalVM native image.
 
-- [https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html)
+To build the application and test it locally:
 
-## Feature aws-lambda documentation
+```
+# Without Docker
+./build-native-image.sh
+zip -j build/function.zip bootstrap mn-aws-function-graal
+./sam-local.sh
+```
 
-- [Micronaut AWS Lambda Function documentation](https://micronaut-projects.github.io/micronaut-aws/latest/guide/index.html#lambda)
+To send a request:
 
+```
+curl -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' localhost:3000/jokes
+```
+
+To deploy to AWS:
+
+```
+zip -j build/function.zip bootstrap mn-aws-function-graal
+
+
+S3_BUCKET=USE-YOUR-OWN-BUCKET
+STACK_NAME=USE-YOUR-OWN-STACK-NAME
+
+aws cloudformation package --template-file sam-native.yaml --output-template-file build/output-sam.yaml --s3-bucket $S3_BUCKET
+aws cloudformation deploy --template-file build/output-sam.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM
+
+API_ENDPOINT=`aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -r '.Stacks[0] .Outputs[0] .OutputValue'`
+
+curl -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' $API_ENDPOINT
+
+# To delete everything
+aws cloudformation delete-stack --stack-name $STACK_NAME
+```
