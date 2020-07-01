@@ -5,9 +5,7 @@ Test application for Micronaut Function deployed to AWS as a GraalVM native imag
 To build the application and test it locally:
 
 ```
-# Without Docker
 ./build-native-image.sh
-zip -j build/function.zip bootstrap mn-aws-function-graal
 ./sam-local.sh
 ```
 
