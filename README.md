@@ -18,7 +18,7 @@ curl -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' localhos
 To deploy to AWS:
 
 ```
-zip -j build/function.zip bootstrap mn-aws-function-graal
+zip -j build/function.zip bootstrap aws-function
 
 
 S3_BUCKET=USE-YOUR-OWN-BUCKET
