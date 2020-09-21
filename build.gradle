@@ -42,7 +42,8 @@ dependencies {
 
 test.classpath += configurations.developmentOnly
 
-mainClassName = "example.micronaut.JokeLambdaRuntime"
+//mainClassName = "example.micronaut.JokeLambdaRuntime"
+mainClassName = "example.micronaut.BintrayLambdaRuntime"
 
 // use JUnit 5 platform
 test {
