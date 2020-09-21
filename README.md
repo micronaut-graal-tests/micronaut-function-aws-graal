@@ -30,6 +30,7 @@ aws cloudformation deploy --template-file build/output-sam.yaml --stack-name $ST
 API_ENDPOINT=`aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -r '.Stacks[0] .Outputs[0] .OutputValue'`
 
 curl -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' $API_ENDPOINT
+curl -X POST -H 'Content-Type:application/json' -d '{"micronautPackage":"bom"}' $API_ENDPOINT
 
 # To delete everything
 aws cloudformation delete-stack --stack-name $STACK_NAME
