@@ -13,14 +13,12 @@ To send a request:
 
 ```
 curl -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' localhost:3000/jokes
+curl -X POST -H 'Content-Type:application/json' -d '{"micronautPackage":"bom"}' localhost:3000/bintray
 ```
 
 To deploy to AWS:
 
 ```
-zip -j build/function.zip bootstrap aws-function
-
-
 S3_BUCKET=USE-YOUR-OWN-BUCKET
 STACK_NAME=USE-YOUR-OWN-STACK-NAME
 
