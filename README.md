@@ -4,21 +4,21 @@ Test application for Micronaut Function deployed to AWS as a GraalVM native imag
 
 To build the application and test it locally:
 
-```
+```shell
 ./build-native-image.sh
 ./sam-local.sh
 ```
 
 To send a request:
 
-```
+```shell
 curl -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' localhost:3000/jokes
 curl -X POST -H 'Content-Type:application/json' -d '{"micronautPackage":"bom"}' localhost:3000/bintray
 ```
 
 To deploy to AWS:
 
-```
+```shell
 S3_BUCKET=USE-YOUR-OWN-BUCKET
 STACK_NAME=USE-YOUR-OWN-STACK-NAME
 
