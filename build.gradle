@@ -34,7 +34,7 @@ dependencies {
 
 application {
 //    mainClass.set("example.micronaut.JokeLambdaRuntime")
-    mainClass.set("example.micronaut.BintrayLambdaRuntime")
+    mainClass.set("example.micronaut.GithubLambdaRuntime")
 }
 
 java {

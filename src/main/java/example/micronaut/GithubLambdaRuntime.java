@@ -3,18 +3,18 @@ package example.micronaut;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import io.micronaut.core.annotation.Nullable;
 import io.micronaut.function.aws.runtime.AbstractMicronautLambdaRuntime;
 
-import javax.annotation.Nullable;
 import javax.inject.Singleton;
 import java.net.MalformedURLException;
 
 @Singleton
-public class BintrayLambdaRuntime extends AbstractMicronautLambdaRuntime<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent, BintrayRequest, BintrayPackage> {
+public class GithubLambdaRuntime extends AbstractMicronautLambdaRuntime<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent, GithubRequest, GithubRelease> {
 
     public static void main(String[] args) {
         try {
-            new BintrayLambdaRuntime().run();
+            new GithubLambdaRuntime().run();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -23,8 +23,8 @@ public class BintrayLambdaRuntime extends AbstractMicronautLambdaRuntime<APIGate
 
     @Nullable
     @Override
-    protected RequestHandler<BintrayRequest, BintrayPackage> createRequestHandler(String... args) {
-        return new BintrayRequestHandler();
+    protected RequestHandler<GithubRequest, GithubRelease> createRequestHandler(String... args) {
+        return new GithubRequestHandler();
     }
 
 }
