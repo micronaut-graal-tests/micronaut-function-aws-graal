@@ -10,11 +10,11 @@ import javax.inject.Singleton;
 import java.net.MalformedURLException;
 
 @Singleton
-public class BintrayLambdaRuntime extends AbstractMicronautLambdaRuntime<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent, BintrayRequest, BintrayPackage> {
+public class GithubLambdaRuntime extends AbstractMicronautLambdaRuntime<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent, GithubRequest, GithubRelease> {
 
     public static void main(String[] args) {
         try {
-            new BintrayLambdaRuntime().run();
+            new GithubLambdaRuntime().run();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -23,8 +23,8 @@ public class BintrayLambdaRuntime extends AbstractMicronautLambdaRuntime<APIGate
 
     @Nullable
     @Override
-    protected RequestHandler<BintrayRequest, BintrayPackage> createRequestHandler(String... args) {
-        return new BintrayRequestHandler();
+    protected RequestHandler<GithubRequest, GithubRelease> createRequestHandler(String... args) {
+        return new GithubRequestHandler();
     }
 
 }
