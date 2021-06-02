@@ -2,8 +2,7 @@ package example.micronaut;
 
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.function.aws.MicronautRequestHandler;
-
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @Introspected
 public class JokeRequestHandler extends MicronautRequestHandler<JokeRequest, Joke> {
