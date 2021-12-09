@@ -13,7 +13,7 @@ To send a request:
 
 ```shell
 curl -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' localhost:3000/jokes
-curl -X POST -H 'Content-Type:application/json' -d '{"micronautVersion":"2.5.0"}' localhost:3000/github
+curl -X POST -H 'Content-Type:application/json' -d '{"micronautVersion":"3.2.0"}' localhost:3000/github
 ```
 
 To deploy to AWS:
@@ -28,7 +28,7 @@ aws cloudformation deploy --template-file build/output-sam.yaml --stack-name $ST
 API_ENDPOINT=`aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -r '.Stacks[0] .Outputs[0] .OutputValue'`
 
 curl -X POST -H 'Content-Type:application/json' -d '{"category":"foo"}' $API_ENDPOINT
-curl -X POST -H 'Content-Type:application/json' -d '{"micronautVersion":"2.5.0"}' $API_ENDPOINT
+curl -X POST -H 'Content-Type:application/json' -d '{"micronautVersion":"3.2.0"}' $API_ENDPOINT
 
 # To delete everything
 aws cloudformation delete-stack --stack-name $STACK_NAME
